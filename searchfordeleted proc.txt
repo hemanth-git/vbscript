@@ -1,0 +1,43 @@
+ Set objXLStrt = CreateObject("Excel.Application")
+ Set objWBStrt = objXLStrt.WorkBooks.Open("C:\Users\USER\Desktop\vbscript\book2.xlsx")
+ 
+ Set objXLDst = CreateObject("Excel.Application")
+ Set objWBDst = objXLDst.WorkBooks.Open("C:\Users\USER\Desktop\vbscript\book1.xlsx")
+ 
+'rows1=objXLStrt.ActiveWorkbook.Sheets(1).UsedRange.Rows.count
+'cols1=objXLStrt.ActiveWorkbook.Sheets(1).UsedRange.Columns.count
+
+'rows2=objXLDst.ActiveWorkbook.Sheets(1).UsedRange.Rows.count
+'cols2=objXLDst.ActiveWorkbook.Sheets(1).UsedRange.Columns.count
+
+'nooftestScenarios = objXLScenario.ActiveWorkbook.Sheets(1).UsedRange.Rows.count
+	Const xlUp = -4162
+	'This is the Rule or sheet name to be given to process.
+	ruleName="PREOP_VISIT_ICD10" 
+	set objWSStrt = objWBStrt.Sheets.Item(ruleName)
+	Set ws = objWBStrt.Worksheets(ruleName)
+	With ws
+		rows1 = .Range("A" & .Rows.Count).End(xlUp).Row
+	End With
+	
+Msgbox("Rows    :" & rows1 &"Columns :" & cols1)
+Msgbox("Rows    :" & rows2 &"Columns :" & cols2)
+str ="these are the codes deleted "&vbcrlf
+ For i = 1 to rows1
+	for j = 1 to rows2
+		val1=objXLStrt.Cells(i, 1).Value
+		val2=objXLDst.Cells(j, 1).Value
+		if val1 = val2 then
+			str=str&", "&val1
+			exit for
+		else
+			
+		end if
+	next
+ next
+ msgbox(str)
+ objWBDst.Close
+ objXLDst.Quit
+ objWBStrt.Close
+ objXLStrt.Quit
+ 
