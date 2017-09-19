@@ -526,19 +526,14 @@ code:
 --------------------------
 dim fso,f,opentxtfile
 set fso = createobject("scripting.filesystemobject")
-
 dim foldername
 filename="c:/testing/manual/new.txt"
 if(fso.fileexists(filename))then 
 	msgbox "exists"
 	set opentxtfile = fso.opentextfile(filename,1)
-	'opentxtfile.write("*******************************")
-	'opentxtfile.writeline("&&&&&&&&&&&&&&&&&&&&&&&&&&&")
-	'opentxtfile.writeline("$$$$$$$$$$$$$$$$$$$$$$$")
-	'opentxtfile.close()
 	msgbox opentxtfile.readline()
 	do
-		msgbox opentxtfile.readline()
+	msgbox opentxtfile.readline()
 	loop until(opentxtfile.atendofstream)
 else
 	msgbox "no not there"
